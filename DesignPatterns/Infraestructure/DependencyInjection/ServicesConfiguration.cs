@@ -9,7 +9,9 @@ namespace DesignPatterns.Infraestructure.DependencyInjection
         {
             // Usar DBVehicleRepository al integrar Base de datos
             //services.AddTransient<IVehicleRepository, DBVehicleRepository>();
-            services.AddTransient<IVehicleRepository, MyVehiclesRepository>();
+            
+            services.AddSingleton<IVehicleRepository>(MyVehiclesRepository.GetInstance());
+
         }
     }
 }

@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿// clase Car que herede de la clase Vehicle y ajuste sus propiedades específicas
 
-namespace DesignPatterns.Models
+using DesignPatterns.Models;
+
+public class Car : Vehicle
 {
-    public class Car : Vehicle
+    public override int Tires => 4;
+
+    public Car(string color, string brand, string model) : base(color, brand, model)
     {
-        public override int Tires { get => 4; }
 
-        public Car(string color, string brand, string model) : base(color, brand, model)
-        {
-
-        }
     }
 }

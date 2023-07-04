@@ -1,35 +1,41 @@
 ﻿using DesignPatterns.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DesignPatterns.Repositories
 {
     public class MyVehiclesRepository : IVehicleRepository
     {
-        private readonly ICollection<Vehicle> _memoryCollection;
+        private static MyVehiclesRepository _instance;
+        private readonly List<Vehicle> _vehicles;
 
-        public MyVehiclesRepository()
+        private MyVehiclesRepository()
         {
-            _memoryCollection = new List<Vehicle>();
+            _vehicles = new List<Vehicle>();
         }
+
+        public static MyVehiclesRepository GetInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = new MyVehiclesRepository();
+            }
+            return _instance;
+        }
+
 
         public void AddVehicle(Vehicle vehicle)
         {
-            _memoryCollection.Add(vehicle);
+            _vehicles.Add(vehicle);
+        }
+
+        public List<Vehicle> GetVehicles()
+        {
+            return _vehicles;
         }
 
         public Vehicle Find(string id)
         {
-           return  _memoryCollection.FirstOrDefault(v => v.ID.Equals(new Guid(id)));
+            return _vehicles.Find(v => v.ID.Equals(id));
         }
-
-        public ICollection<Vehicle> GetVehicles()
-        {
-            return _memoryCollection;
-        }
-
-        
     }
 }

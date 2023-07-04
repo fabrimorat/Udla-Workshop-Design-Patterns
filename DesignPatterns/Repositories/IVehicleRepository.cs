@@ -1,18 +1,12 @@
-﻿using DesignPatterns.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using DesignPatterns.Models;
 
 namespace DesignPatterns.Repositories
 {
     public interface IVehicleRepository
     {
-        ICollection<Vehicle> GetVehicles();
-
         void AddVehicle(Vehicle vehicle);
-
+        List<Vehicle> GetVehicles();
         Vehicle Find(string id);
-
     }
 }

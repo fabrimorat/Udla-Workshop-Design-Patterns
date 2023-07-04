@@ -13,12 +13,12 @@ namespace DesignPatterns.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
         private readonly IVehicleRepository _vehicleRepository;
 
-        public HomeController(IVehicleRepository vehicleRepository,ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger)
         {
-            _vehicleRepository = vehicleRepository;
+            //  Utilizamos el método GetInstance() para obtener la única instancia de MyVehiclesRepository.
+            _vehicleRepository = MyVehiclesRepository.GetInstance();
             _logger = logger;
         }
 
@@ -35,7 +35,7 @@ namespace DesignPatterns.Controllers
         [HttpGet]
         public IActionResult AddMustang()
         {
-            _vehicleRepository.AddVehicle(new Car("red","Ford","Mustang"));
+            _vehicleRepository.AddVehicle(new Car("red", "Ford", "Mustang"));
             return Redirect("/");
         }
 
@@ -55,12 +55,12 @@ namespace DesignPatterns.Controllers
                 vehicle.StartEngine();
                 return Redirect("/");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ViewBag.ErrorMessage = ex.Message;
                 return Redirect($"/?error={ex.Message}");
             }
-          
+
         }
 
         [HttpGet]
@@ -89,13 +89,13 @@ namespace DesignPatterns.Controllers
                 vehicle.StopEngine();
                 return Redirect("/");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ViewBag.ErrorMessage = ex.Message;
                 return Redirect($"/?error={ex.Message}");
             }
-           
-           
+
+
         }
 
 

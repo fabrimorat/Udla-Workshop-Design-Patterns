@@ -7,12 +7,13 @@ namespace DesignPatterns.Models
 {
     public abstract class Vehicle : IVehicle
     {
+
         #region Private properties
         private bool _isEngineOn { get; set; }
         #endregion
 
         #region Properties
-        public readonly Guid ID;
+        public Guid ID { get; set; }
         public virtual int Tires { get; set; }
         public string Color { get; set; }
         public string Brand { get; set; }
